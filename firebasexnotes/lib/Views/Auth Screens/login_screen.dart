@@ -2,16 +2,31 @@
 
 import 'package:firebasexnotes/Models/custom_button.dart';
 import 'package:firebasexnotes/Models/custom_text_field.dart';
+import 'package:firebasexnotes/Views/Auth%20Screens/register_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController emailController=TextEditingController();
+  TextEditingController passwordController=TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    TextEditingController emailController=TextEditingController();
-    TextEditingController passwordController=TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -34,7 +49,9 @@ class LoginScreen extends StatelessWidget {
                 children: [
                 Text("Not a member yet ? ",style: TextStyle(color: Colors.black,fontSize: 15),),
                 InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    Get.to(()=>RegisterScreen());
+                  },
                   child: Text("Register",style: TextStyle(color: Colors.purple,fontSize: 15,fontWeight: FontWeight.bold),),),
               ],),
             ],
