@@ -5,7 +5,7 @@ import 'package:firebasexnotes/Views/home_screen.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController{
-  FirebaseAuth _firebaseAuth=FirebaseAuth.instance;
+  FirebaseAuth firebaseAuth=FirebaseAuth.instance;
   Rx<bool> isRegisterLoading=false.obs;
   Rx<bool> isLoginLoading=false.obs;
 
@@ -13,7 +13,7 @@ class AuthController extends GetxController{
   Future registerUser(String email,String password) async{
     
     try{
-      await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
       Get.snackbar("Successfully", "Registered the user");
       Get.offAll(()=>HomeScreen());
     }catch(e){
@@ -25,7 +25,7 @@ class AuthController extends GetxController{
   //Login
   Future loginUser(String email,String password)async{
     try{
-      await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
       Get.snackbar("Successfully", "Logged the user");
       Get.offAll(()=>HomeScreen());
     }catch(e){
