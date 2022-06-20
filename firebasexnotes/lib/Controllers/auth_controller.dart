@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_final_fields
+// ignore_for_file: prefer_final_fields, prefer_const_constructors
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebasexnotes/Views/home_screen.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController{
@@ -14,6 +15,7 @@ class AuthController extends GetxController{
     try{
       await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
       Get.snackbar("Successfully", "Registered the user");
+      Get.offAll(()=>HomeScreen());
     }catch(e){
       Get.snackbar("Error Registering User", e.toString());
     }
@@ -25,6 +27,7 @@ class AuthController extends GetxController{
     try{
       await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
       Get.snackbar("Successfully", "Logged the user");
+      Get.offAll(()=>HomeScreen());
     }catch(e){
       Get.snackbar("Error Logging User", e.toString());
     }
