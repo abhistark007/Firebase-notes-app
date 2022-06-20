@@ -2,6 +2,7 @@
 
 import 'package:firebasexnotes/Controllers/notes_controller.dart';
 import 'package:firebasexnotes/Models/custom_button.dart';
+import 'package:firebasexnotes/Models/notes_model.dart';
 import 'package:firebasexnotes/Views/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -53,10 +54,10 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                 Center(child: CircularProgressIndicator(),)
                 :CustomButton(onpressed: () async{
                   notesController.addNotesLoading.value=true;
-                  await notesController.addNotes(textEditingController.text);
+                  await notesController.addNotes(textEditingController.text,Notes(txt: textEditingController.text));
                   notesController.addNotesLoading.value=false;
                   Get.offAll(()=>HomeScreen());
-                }, buttonContent: "Add Task")
+                }, buttonContent: "Add Task"),
               ],
             ),
           ),
