@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "255650662919",
+    "project_id": "fir-xnotes",
+    "storage_bucket": "fir-xnotes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255650662919:android:1ef790bfe3e26978cd78a2",
+        "android_client_info": {
+          "package_name": "com.example.firebasexnotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "255650662919-ea058s76qhjvhasgcrp78afcd1bbss15.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZsJ79_xJ8UQvVNG24IAKGdYrwkULRX5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "255650662919-ea058s76qhjvhasgcrp78afcd1bbss15.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
