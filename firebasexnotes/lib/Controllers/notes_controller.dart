@@ -9,7 +9,10 @@ class NotesController extends GetxController{
   FirebaseFirestore firebaseFirestore=FirebaseFirestore.instance;
   Rx<bool> addNotesLoading=false.obs;
   Rx<bool> displayNotesoading=false.obs;
+  Rx<bool> deleteLoading=false.obs;
   List<Notes> notesList=[];
+  List<Notes> deletedList=[];
+
   // Add Notes
   Future addNotes(String txt,Notes notes)async{
     try{
@@ -32,5 +35,17 @@ class NotesController extends GetxController{
       print(i["goals"]);
     }
     return notesList;
+  }
+
+  //delete Notes
+  Future deleteANote(Notes notes)async{
+    try{
+    var collection = firebaseFirestore.collection('notes').doc(authController.firebaseAuth.currentUser!.uid).collection(authController.firebaseAuth.currentUser!.email!);
+    var snapshot = await collection.where('goals', isEqualTo: notes.txt).get();
+    await snapshot.docs.first.reference.delete();
+   Get.snackbar("Successfully", "Deleted that task");
+    }catch(e){
+      Get.snackbar("Error Deleting", e.toString());
+    }
   }
 }
