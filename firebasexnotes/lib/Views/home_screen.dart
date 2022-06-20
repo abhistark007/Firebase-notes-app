@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+
 import 'package:firebasexnotes/Controllers/notes_controller.dart';
 import 'package:firebasexnotes/Models/custom_button.dart';
 import 'package:firebasexnotes/Models/notes_model.dart';
@@ -20,12 +21,14 @@ class _HomeScreenState extends State<HomeScreen> {
   NotesController notesController=Get.put(NotesController());
 
   late Future noteDataList;
+  bool isLoading=false;
 
   @override
   void initState() {
     noteDataList=notesController.getNotesList();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Expanded(
                   child: FutureBuilder(
-                    future: noteDataList,
+                    future:isLoading? noteDataList:noteDataList,
                     builder: (context,snapshot){
                       notesController.deleteLoading.value=false;
                       if(!snapshot.hasData){
@@ -64,9 +67,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           itemCount: notesController.notesList.length,
                           itemBuilder: (context,index){
                             return StyledContainer(iconButtonFunction: (){
+                              
                               notesController.deleteANote(Notes(txt: notesController.notesList[index].txt));
                               setState(() {
-                                
+                                isLoading=!isLoading;
                               });
                             }, voidCallback1: (){}, txt: notesController.notesList[index].txt);
                           },
