@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:firebasexnotes/Controllers/notes_controller.dart';
 import 'package:firebasexnotes/Models/custom_button.dart';
 import 'package:firebasexnotes/Views/add_notes_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  NotesController notesController=Get.put(NotesController());
+
+  @override
+  void initState() {
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +47,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-
+            Expanded(
+              child: FutureBuilder(
+                future: notesController.getNotesList(),
+                builder: (context,snapshot){
+                  if(!snapshot.hasData){
+                    return Center(child: CircularProgressIndicator(),);
+                  }else{
+                    return ListView.builder(
+                      itemCount: notesController.notesList.length,
+                      itemBuilder: (context,index){
+                        return Container(
+                          child: Text(notesController.notesList[index].txt),
+                        );
+                      },
+                    );
+                  }
+                },
+              ),
+            ),
           ],
         ),
       ),
