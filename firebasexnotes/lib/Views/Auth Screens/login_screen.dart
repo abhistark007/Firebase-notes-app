@@ -49,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 authController.isLoginLoading.value?Center(child: CircularProgressIndicator())
                 :CustomButton(buttonContent: "Login",onpressed: ()async{
                   authController.isLoginLoading.value=true;
-                  authController.loginUser(emailController.text, passwordController.text);
+                  await authController.loginUser(emailController.text, passwordController.text);
                   authController.isLoginLoading.value=false;
                 },)
 ,
