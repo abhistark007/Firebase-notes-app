@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   final String buttonContent;
+  final VoidCallback onpressed;
   const CustomButton({Key? key,
+  required this.onpressed,
   required this.buttonContent,
   }) : super(key: key);
 
@@ -16,7 +18,7 @@ class CustomButton extends StatelessWidget {
       color: Colors.purple,
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
-        onTap: (){},
+        onTap: onpressed,
         borderRadius: BorderRadius.circular(20),
         child: Padding(
           padding: const EdgeInsets.all(10),
